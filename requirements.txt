@@ -1,3 +1,5 @@
+lightgbm
+xgboost
 scikit-learn
 joblib 
 streamlit 
