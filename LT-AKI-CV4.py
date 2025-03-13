@@ -75,10 +75,10 @@ if st.button("Predict"):
     trainy=df.AKI123
     x_train=df.drop('AKI123',axis=1)
     from sklearn.preprocessing import StandardScaler
-    continuous_cols = [1,2,3,4]
+    continuous_cols = ['Age', 'Weight', 'Surgery_duration', 'RBC_transfusion']
     trainx = x_train.copy()
     scaler = StandardScaler()
-    trainx.iloc[:, continuous_cols] = scaler.fit_transform(x_train.iloc[:, continuous_cols])
+    trainx[continuous_cols] = scaler.fit_transform(x_train[continuous_cols])
 
     explainer_shap = shap.KernelExplainer(model.predict_proba, trainx)
     
