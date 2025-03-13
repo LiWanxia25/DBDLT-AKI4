@@ -52,18 +52,18 @@ if st.button("Predict"):
 
     probability = predicted_proba[predicted_class] * 100
     # Generate advice based on prediction results  
-    if predicted_class == 1:        
-        advice = (            
-            f"According to the model, you are at high risk of developing acute kidney injury (AKI) after heart transplant surgery. "            
-            f"The model predicts a {probability:.1f}% probability of AKI. "            
-            "It is recommended to closely monitor kidney function indicators and maintain communication with your medical team for timely prevention or intervention."        
-        )    
-    else:        
-        advice = (           
-            f"According to the model, you are at low risk of developing acute kidney injury (AKI) after heart transplant surgery. "            
-            f"The model predicts a {probability:.1f}% probability of not developing AKI. "            
-            "However, it is still important to closely monitor kidney function post-surgery and follow the guidance of your medical team to ensure a smooth     recovery."        
-        )      
+    if predicted_class == 1:
+        advice = (
+            f"According to the model, you are at high risk of developing acute kidney injury (AKI) after liver transplantation. "
+            f"The model predicts a {probability:.1f}% probability of AKI. "
+            "It is recommended to closely monitor kidney function indicators and maintain communication with your medical team for timely prevention or intervention."
+        )
+    else:
+        advice = (
+            f"According to the model, you are at low risk of developing acute kidney injury (AKI) after liver transplantation. "
+            f"The model predicts a {probability:.1f}% probability of not developing AKI. "
+            "However, it is still important to closely monitor kidney function post-surgery and follow the guidance of your medical team to ensure a smooth recovery."
+    )
     st.write(advice)
 
     # SHAP Explanation
