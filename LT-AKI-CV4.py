@@ -42,7 +42,7 @@ if st.button("Predict"):
     
     #Predict class and probabilities    
     #predicted_class = model.predict(final_features_df)[0]   
-    predicted_proba = model.predict_proba(final_features_df)[0]
+    predicted_proba = model.predict_proba(standardized_features)[0]
     prob_class1 = predicted_proba[1]  # 类别1的概率
 
     # 根据最优阈值判断类别
