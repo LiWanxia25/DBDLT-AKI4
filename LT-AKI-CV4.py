@@ -37,18 +37,33 @@ standardized_features_1 = scaler.transform(features_df)
 # 关键修改：确保 final_features 是一个二维数组，并且用 DataFrame 传递给模型
 standardized_features = pd.DataFrame(standardized_features_1, columns=feature_names)
 
-if st.button("Predict"):    
+if st.button("Predict"):  
+    OPTIMAL_THRESHOLD = 0.461
+    
+    #Predict class and probabilities    
+    #predicted_class = model.predict(final_features_df)[0]   
+    predicted_proba = model.predict_proba(final_features_df)[0]
+    prob_class1 = predicted_proba[1]  # 类别1的概率
+
+    # 根据最优阈值判断类别
+    predicted_class = 1 if prob_class1 >= OPTIMAL_THRESHOLD else 0
+
+    # 显示结果（概率形式更直观）
+    st.write(f"**Post-AKI Probability:** {prob_class1:.1%}")
+    st.write(f"**Decision Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
+    st.write(f"**Predicted Class:** {predicted_class} (1: High risk, 0: Low risk)")
+    
     # 标准化特征
     # standardized_features = scaler.transform(features)
 
     # Predict class and probabilities    
-    predicted_class = model.predict(standardized_features)[0]   
-    predicted_proba = model.predict_proba(standardized_features)[0]
+    #predicted_class = model.predict(standardized_features)[0]   
+    #predicted_proba = model.predict_proba(standardized_features)[0]
 
     # Display prediction results    
-    st.write(f"**Predicted Class:** {predicted_class} (0: No Disease, 1: Disease)")   
-    formatted_proba = ", ".join(f"{prob:.2f}" for prob in predicted_proba)
-    st.write(f"**Prediction Probabilities:** {formatted_proba}")
+    #st.write(f"**Predicted Class:** {predicted_class} (0: No Disease, 1: Disease)")   
+    #formatted_proba = ", ".join(f"{prob:.2f}" for prob in predicted_proba)
+    #st.write(f"**Prediction Probabilities:** {formatted_proba}")
 
     probability = predicted_proba[predicted_class] * 100
     # Generate advice based on prediction results  
