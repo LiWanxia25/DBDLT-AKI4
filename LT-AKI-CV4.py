@@ -15,7 +15,7 @@ scaler = joblib.load('scaler4.pkl')
 feature_names = ['Age', 'Weight', 'Surgery_duration', 'RBC_transfusion']
 
 # Streamlit user interface
-st.title("DBDLT-AKI Phase 1 Predictor")
+st.title("DBDLT-AKI Stage-1 Predictor")
 
 # Age: numerical input
 Age = st.number_input("Age (years):", min_value=18, max_value=100, value=50)
